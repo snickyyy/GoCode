@@ -9,7 +9,7 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
     if sys.argv[1].lower() == "test":
-        subprocess.run(["black", "--config", "../.black.toml", "."])
+        subprocess.run(["black", "--config", ".black.toml", "."])
         subprocess.run(["isort", "."])
 
     try:
