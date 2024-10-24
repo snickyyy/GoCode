@@ -26,13 +26,16 @@ class TASK_LANGUAGE_CHOICES(models.IntegerChoices):
 
 class Tasks(BaseModel):
     name = models.CharField(
-        max_length=280, unique=True, help_text=_("Name must be unique and max length is 280 characters.")
+        max_length=280,
+        unique=True,
+        help_text=_("Name must be unique and max length is 280 characters."),
     )
     difficulty = models.PositiveSmallIntegerField(
         choices=DIFFICULTLY_CHOICES.choices, default=DIFFICULTLY_CHOICES.MEDIUM
     )
     category = models.CharField(
-        max_length=24, choices=[("Math", "Math"), ("DB", "DataBase"), ("Algorithms", "Algorithms")]
+        max_length=24,
+        choices=[("Math", "Math"), ("DB", "DataBase"), ("Algorithms", "Algorithms")],
     )
     description = models.TextField(max_length=2400)
     constraints = models.CharField(max_length=240)

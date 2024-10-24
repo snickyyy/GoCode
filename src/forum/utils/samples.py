@@ -1,4 +1,4 @@
-from forum.models import Conversation, Comments
+from forum.models import Comments, Conversation
 
 
 def sample_post(author, **kwargs):

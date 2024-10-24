@@ -1,4 +1,5 @@
-from problems.models import Tasks, Tests, Solutions, TASK_LANGUAGE_CHOICES, TASK_STATUS_CHOICES
+from problems.models import (TASK_LANGUAGE_CHOICES, TASK_STATUS_CHOICES,
+                             Solutions, Tasks, Tests)
 
 
 def sample_tests(path, **kwargs):
@@ -20,6 +21,7 @@ def sample_task(title: str, tests, **kwargs):
     }
     default.update(kwargs)
     return Tasks.objects.create(**default)
+
 
 def sample_solution(user, task, **kwargs):
     default = {

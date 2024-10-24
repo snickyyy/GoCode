@@ -2,10 +2,10 @@ from pathlib import Path
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 
-from problems.models import Tasks, Solutions
-from problems.utils.samples import sample_task, sample_tests, sample_solution
+from problems.models import Solutions, Tasks
+from problems.utils.samples import sample_solution, sample_task, sample_tests
 
 
 class TestProblems(TestCase):

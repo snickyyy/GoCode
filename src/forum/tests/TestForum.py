@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 
-from forum.utils.samples import sample_post, sample_comment
+from forum.utils.samples import sample_comment, sample_post
 
 
 class TestPost(TestCase):
