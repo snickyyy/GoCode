@@ -6,5 +6,4 @@ from accounts.models import GoUser
 
 
 @admin.register(GoUser)
-class GoUserAdmin(admin.ModelAdmin):
-    ...
+class GoUserAdmin(admin.ModelAdmin): ...

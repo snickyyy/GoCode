@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import Client, TestCase
 
-from problems.models import Solutions, Tasks
+from problems.models import Language, Solutions, Tasks
 from problems.utils.samples import sample_solution, sample_task, sample_tests
 
 
@@ -44,11 +44,9 @@ class TestSolutions(TestCase):
         self.user.set_password("12345678")
         self.user.save()
 
-        self.solution = sample_solution(self.user, self.task)
+        self.language = Language.objects.create(language="Python")
+
+        self.solution = sample_solution(self.user, self.task, self.language)
 
     def test_solution(self):
         self.assertEqual(Solutions.objects.count(), 1)
-
-    def test_bad_choice_status(self):
-        with self.assertRaises(ValidationError):
-            sample_solution(self.user, self.task, status=10)

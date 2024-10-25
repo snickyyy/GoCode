@@ -1,6 +1,3 @@
-body {
-    background: rgb(99, 39, 120)
-}
 
 .form-control:focus {
     box-shadow: none;
@@ -28,7 +25,7 @@ body {
 }
 
 .back:hover {
-    color: #682773;
+    color: #ffffff;
     cursor: pointer
 }
 
@@ -41,4 +38,8 @@ body {
     color: #fff;
     cursor: pointer;
     border: solid 1px #BA68C8
+}
+body {
+    /*background: rgb(99, 39, 120)*/
+    background:red;
 }

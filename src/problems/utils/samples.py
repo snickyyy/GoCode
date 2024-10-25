@@ -1,4 +1,4 @@
-from problems.models import (TASK_LANGUAGE_CHOICES, TASK_STATUS_CHOICES,
+from problems.models import (CATEGORIES_CHOICES, TASK_STATUS_CHOICES,
                              Solutions, Tasks, Tests)
 
 
@@ -17,17 +17,17 @@ def sample_task(title: str, tests, **kwargs):
         "description": "test task description",
         "constraints": "test constraints",
         "tests": tests,
-        "category": "Math",
+        "category": CATEGORIES_CHOICES.MATH,
     }
     default.update(kwargs)
     return Tasks.objects.create(**default)
 
 
-def sample_solution(user, task, **kwargs):
+def sample_solution(user, task, language, **kwargs):
     default = {
         "user": user,
         "task": task,
-        "language": TASK_LANGUAGE_CHOICES.PYTHON,
+        "language": language,
         "solution": "print('Hello, World!')",
         "status": TASK_STATUS_CHOICES.ACCEPTED,
         "time": 16,

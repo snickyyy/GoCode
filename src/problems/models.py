@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models import CASCADE, DO_NOTHING
+from django.db.models import CASCADE, DO_NOTHING, SET_DEFAULT
 from django.utils.translation import gettext_lazy as _
 
 from common.models import BaseModel
@@ -19,9 +19,14 @@ class TASK_STATUS_CHOICES(models.IntegerChoices):
     ACCEPTED = 1, "Accepted"
 
 
-class TASK_LANGUAGE_CHOICES(models.IntegerChoices):
-    PYTHON = 0, "Python"
-    SQL = 1, "SQL"
+class CATEGORIES_CHOICES(models.IntegerChoices):
+    MATH = 0, "Math"
+    PYTHON = 1, "Python"
+    DB = 2, "DataBase"
+
+
+class Language(BaseModel):
+    language = models.CharField(max_length=50)
 
 
 class Tasks(BaseModel):
@@ -33,14 +38,12 @@ class Tasks(BaseModel):
     difficulty = models.PositiveSmallIntegerField(
         choices=DIFFICULTLY_CHOICES.choices, default=DIFFICULTLY_CHOICES.MEDIUM
     )
-    category = models.CharField(
-        max_length=24,
-        choices=[("Math", "Math"), ("DB", "DataBase"), ("Algorithms", "Algorithms")],
+    category = models.PositiveSmallIntegerField(
+        choices=CATEGORIES_CHOICES.choices,
     )
     description = models.TextField(max_length=2400)
     constraints = models.CharField(max_length=240)
     tests = models.ForeignKey("problems.Tests", on_delete=DO_NOTHING)
-    edited = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to="tasks/images", null=True, blank=True)
 
     def __str__(self):
@@ -58,7 +61,11 @@ class Tests(BaseModel):
 class Solutions(BaseModel):
     user = models.ForeignKey(get_user_model(), on_delete=CASCADE)
     task = models.ForeignKey(Tasks, on_delete=DO_NOTHING)
-    language = models.PositiveSmallIntegerField(choices=TASK_LANGUAGE_CHOICES.choices)
+    language = models.ForeignKey(
+        Language,
+        on_delete=SET_DEFAULT,
+        default="unknown",
+    )
     solution = models.TextField(max_length=4200)
     status = models.PositiveSmallIntegerField(
         choices=TASK_STATUS_CHOICES.choices, default=TASK_STATUS_CHOICES.IN_DEVELOPMENT
