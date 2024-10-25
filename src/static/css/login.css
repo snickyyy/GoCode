@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 430px;
+    width: 370px;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input {
+    width: 300px;
+    height: 40px;
+    padding: 0.5rem;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.5s ease, background-color 0.3s ease, border-width 0.02s ease; /* Добавляем анимацию для ширины границы */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    font-size: 0.9rem;
+    color: #c1c1c1;
+    opacity: 1; /* Убираем стандартную прозрачность */
+}
+
+input:hover {
+    border-color: #353535; /* Цвет границы при наведении */
+}
+
+input:focus {
+    width: 302px;
+    height: 42px;
+    border-width: 2px;
+    border-color: #939393;
+    outline: none;
+}
+
+.btn {
+    width: 200px;
+    height: 38px;
+    padding: 12px 50px;
+    background-color: #3c3f4c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    display: block; /* Делаем кнопку блочной */
+    margin: 0 auto; /* Центрируем кнопку по горизонтали */
+}
+
+.btn:hover {
+    background-color: #878787;
+}
+
+p {
+    font-size: 14px;
+    color: #939393;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+a {
+    color: #393939;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo-under-form {
+    display: block; /* Делаем элемент блочным */
+    margin: 0 auto; /* Центрируем элемент по горизонтали */
+    width: 180px; /* Ширина элемента */
+    height: 110px; /* Высота элемента */
+    padding: -5px 0;
+}
+
+.icon-container {
+    display: flex; /* Используем flexbox для расположения */
+    justify-content: center; /* Центрируем иконки по горизонтали */
+    align-items: center; /* Выравниваем иконки по вертикали */
+    gap: 20px; /* Добавляем отступ между иконками (можно настроить по желанию) */
+}
+
+.icon-github-for-sign-in,
+.icon-google-for-sign-in {
+    fill: #8f8f8f; /* Цвет иконки */
+    width: 35px;
+    height: 35px;
+    transition: fill 0.25s ease;
+}
+
+.icon-github-for-sign-in:hover {
+    fill: #2c2e3c; /* Цвет при наведении */
+}
+
+.icon-google-for-sign-in:hover {
+    fill: #ff3a3a; /* Цвет при наведении */
+}

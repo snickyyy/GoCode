@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background: rgb(55, 55, 55);
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #BA68C8;
+        }
+
+        .profile-button {
+            background: rgb(99, 39, 120);
+            box-shadow: none;
+            border: none;
+        }
+
+        .profile-button:hover {
+            background: #682773;
+        }
+
+        .profile-button:focus {
+            background: #682773;
+            box-shadow: none;
+        }
+
+        .profile-button:active {
+            background: #682773;
+            box-shadow: none;
+        }
+
+        .back:hover {
+            color: #682773;
+            cursor: pointer;
+        }
+
+        .labels {
+            font-size: 11px;
+        }
+
+        body.row {
+            width: 600px;
+        }
+
+        .add-experience:hover {
+            background: #BA68C8;
+            color: #ff0000;
+            cursor: pointer;
+            border: solid 1px #BA68C8;
+        }
+    </style>
+</head>
+
+<header class="site-header sticky-top py-1" style="background: rgb(38,38,38)">
+    <nav class="selection-of-partitions d-flex justify-content-between align-items-center">
+        <div class="left-links d-flex">
+            <a class="py-2" href="/" aria-label="Product">
+                <img class="selection-of-partitions-img" src="{% static 'logos/GoCode_logo_white.svg' %}" alt="Product Icon" width="40px" height="25px" style="opacity: 0.5">
+            </a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="text-decoration: none;">News</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="text-decoration: none;">Forum</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="text-decoration: none;">Problems</a>
+            <a class="py-2 d-none d-md-inline-block" href="https://github.com/snickyyy/GoCode" style="text-decoration: none;">Github</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="text-decoration: none;">Support</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="text-decoration: none;">Pricing</a>
+            <a class="py-2 d-none d-md-inline-block" href="#" style="text-decoration: none;">Cart</a>
+        </div>
+        <div class="right-link">
+            {% if user.is_authenticated %}
+                <div style="display: flex; align-items: center; gap: 10px; margin-right: 140px;">
+                <span style="font-size: 14px; color: #8e8e8e;">{{ user.username }}</span> <!-- Установите нужный цвет -->
+                    <a href="{% url 'accounts:profile' %}">
+                        {% if user.photo %}
+                        <img src="{{ user.photo.url }}" alt="" style="width: 40px; height: 40px; border-radius: 20px">
+                        {% else %}
+                            <img src="{% static 'user/photo/base_avatar.png' %}" alt="" style="width: 40px; height: 40px; border-radius: 20px">
+                        {% endif %}
+                    </a>
+                </div>
+            {% else %}
+                <div style="display: flex; align-items: center; gap: 8px; margin-right: 280px;">
+                    <a class="btn btn-outline-secondary" href="{% url 'accounts:register' %}" style="height: 35px; font-size: 15px; padding-top: 5px;">Register</a>
+                    <span style="font-size: 15px; color: #8e8e8e;">or</span> <!-- Установите нужный цвет -->
+                    <a class="btn btn-outline-secondary" href="{% url 'accounts:login' %}" style="height: 35px; font-size: 15px; padding-top: 5px;">Sign in</a>
+                </div>
+
+            {% endif %}
+        </div>
+    </nav>
+</header>
+
+<body>
+    <div class="container rounded bg-white mt-5 mb-5" >
+        <div class="row" >
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    <span class="font-weight-bold">Edogaru</span>
+                    <span class="text-black-50">edogaru@mail.com.my</span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right" >
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                        <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
+                        <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter postcode" value=""></div>
+                        <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter state" value=""></div>
+                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter area" value=""></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience">
+                        <span>Edit Experience</span>
+                        <span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>
+                    </div><br>
+                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
